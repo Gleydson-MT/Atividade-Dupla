@@ -61,16 +61,25 @@ def cadastra_livro():
     livros.append(novo_livro)
 
 def escolher_livro():
+    ver_livro()
     while True:
         try:
+            contador =1
             num = int(input("Digite o número do livro: "))
             if num <1 or num > len(livros):
                 print("Digite um número válido.")
                 return
+            elif num == "":
+                print("Digite um valor válido.")
+            elif num == len(livros):
+                for livro in livros:
+                    if num == livro["titulo"]:
+                        print("LIVRO ENCONTRADO")
+                        print(f"{contador}. {livro['titulo']} | {livro["autor"]} | {livro["tema"]}")
+                        contador+=1
             else:
-                print("LIVRO ENCONTRADO")
-                return num
-        except:
+                break
+        except ValueError:
             print("DIGITE APENAS NÚMEROS")
 
 def remover_titulo():
@@ -159,6 +168,7 @@ while True:
           4. Remover livro.
           5. Pesquisa por temas.
           6. Pesquisar por autor.
+          7. Escolher por titulo.
           0. Sair
 """)
 
@@ -180,6 +190,9 @@ while True:
         pesquisa_tema()
     elif op == "6":
         pesquisa_autor()
+    
+    elif op == "7":
+        escolher_livro()
 
     elif op == "0":
         print("Saindo do programa...")
