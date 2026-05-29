@@ -6,14 +6,31 @@
 
 livros = []
 
+def livro_exist(titulo):
+    for dados in livros:
+        if dados["titulo"]==titulo:
+            return True
+    return False
+    
+# Coloca a primeira letra de cada palavra em maiúscula
+# nome = "aaaaaaaaaaa"
+
+# resultado = nome.title()
+
+# print(resultado)
+
 def cadastra_livro():
     print("CADASTRO DE LIVRO NA BIBLIOTECA")
 
     while True:
 
         titulo = input("Informe o titulo do livro: ")
+        titulo = titulo.title()
         if titulo == "":
             print("Preencha o campo acima para prosseguir.")
+        elif livro_exist(titulo):
+            print("Livro já cadastrado.")
+        
         else:
             break
     while True:
@@ -21,6 +38,8 @@ def cadastra_livro():
         autor = input("Informe o nome do autor: ")
         if autor == "":
             input("Preencha o campo acima para prosseguir: ")
+        elif autor.isdigit():
+            print("Formato de autor inválido.")
         else:
             break
     while True:
@@ -28,6 +47,8 @@ def cadastra_livro():
         tema = input("Digite o tema do livro: ")
         if tema == "":
             print("Preencha o campo acima para prosseguir: ")
+        elif tema.isdigit():
+            print("Formato de tema inválido.")
         else:
             break
 
@@ -38,7 +59,6 @@ def cadastra_livro():
     }
 
     livros.append(novo_livro)
-
 
 def escolher_livro():
     while True:
@@ -53,6 +73,13 @@ def escolher_livro():
         except:
             print("DIGITE APENAS NÚMEROS")
 
+def remover_titulo():
+    ver_livro()
+    num_livro = escolher_livro()
+    livro_removido = livros.pop(num_livro-1)
+    print(f"{livro_removido["titulo"]} foi removido da sua biblioteca.")
+
+
 def ver_livro():
     
     print("LIVROS CADASTRADOS")
@@ -63,11 +90,6 @@ def ver_livro():
         print(f"{contador}. {livro['titulo']} | {livro['autor']} | {livro['tema']}")
         contador += 1
 
-def remover_livro():
-
-    ver_livro()
-    num_livro = escolher_livro()
-    livro_removido = livros.pop(num_livro-1)
 
 def alterar_livro():
     ver_livro()
@@ -95,7 +117,6 @@ Tema: {livro_escolhido['tema']}
     if novo_tema:
         livro_escolhido['tema'] = novo_tema
 
-
 def pesquisa_tema():
     ver_livro()
     contador = 1
@@ -112,8 +133,21 @@ def pesquisa_tema():
         else:
             ("DIGITE A OPÇÃO DESEJADA")
             break
-    input("TECLE ENTER PARA CONTINUAR")
 
+def pesquisa_autor():
+    ver_livro()
+    contador = 1
+    print("DIGITE (0) PARA CANCELAR")
+    escolha = input("Digite o nome do autor: ")
+    for livro in livros:
+        if escolha == livro["autor"]:
+            print(f"{contador}. {livro["titulo"]} | {livro["autor"]}.")
+            contador += 1
+        elif escolha == "0":
+            print("CANCELANDO OPERAÇÃO")
+        else:
+            ("DIGITE A OPÇÃO DESEJADA")
+            break
 
 
 while True:
@@ -123,10 +157,11 @@ while True:
           2. Ver informações.
           3. Atualizar biblioteca.
           4. Remover livro.
-          5.  ssss
+          5. Pesquisa por temas.
+          6. Pesquisar por autor.
           0. Sair
-          
-          """)
+""")
+
 
 
     op = input("Digite a opção desejada: ")
@@ -139,10 +174,12 @@ while True:
         alterar_livro()
     
     elif op == "4":
-        remover_livro()
+        remover_titulo()
 
     elif op == "5":
         pesquisa_tema()
+    elif op == "6":
+        pesquisa_autor()
 
     elif op == "0":
         print("Saindo do programa...")
@@ -151,6 +188,3 @@ while True:
         ("DIGITE A OPÇÃO DESEJADA")
 
 input("TECLE ENTER PARA CONTINUAR: ")
-
-
-
