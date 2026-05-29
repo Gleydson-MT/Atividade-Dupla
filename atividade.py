@@ -96,6 +96,17 @@ Tema: {livro_escolhido['tema']}
         livro_escolhido['tema'] = novo_tema
 
 
+def pesquisa_tema():
+    ver_livro()
+    tema_livro = ver_livro()
+
+    p_tema = input("Digite o tema que deseja consultar: ")
+    for i in len(livros):
+        print(f"{livros['Tema']}")
+
+
+
+
 while True:
     print("""========= MENU DE OPÇÕES =========
           
@@ -103,6 +114,7 @@ while True:
           2. Ver informações.
           3. Atualizar biblioteca.
           4. Remover livro.
+          5.  ssss
           0. Sair
           
           """)
@@ -119,6 +131,9 @@ while True:
     
     elif op == "4":
         remover_livro()
+
+    elif op == "5":
+        pesquisa_tema()
 
     elif op == "0":
         print("Saindo do programa...")
