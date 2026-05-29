@@ -98,12 +98,21 @@ Tema: {livro_escolhido['tema']}
 
 def pesquisa_tema():
     ver_livro()
-    tema_livro = ver_livro()
+    contador = 1
+    print("Digite zero para cancelar operação.")
+    escolha = input("Digite o tema que deseja consultar: ")
+    for livro in livros:
+        if escolha == livro["tema"]:
+            print(f"{contador} - {livro["titulo"]} | {livro["tema"]}")
+            contador += 1
 
-    p_tema = input("Digite o tema que deseja consultar: ")
-    for i in len(livros):
-        print(f"{livros['Tema']}")
+        elif escolha == "0":
+            print("Encerrando programa.")
 
+        else:
+            ("DIGITE A OPÇÃO DESEJADA")
+            break
+    input("TECLE ENTER PARA CONTINUAR")
 
 
 
