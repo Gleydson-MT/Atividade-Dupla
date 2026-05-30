@@ -64,7 +64,6 @@ def escolher_livro():
     ver_livro()
     while True:
         try:
-            contador =1
             num = int(input("Digite o número do livro: "))
             if num <1 or num > len(livros):
                 print("Digite um número válido.")
@@ -72,11 +71,11 @@ def escolher_livro():
             elif num == "":
                 print("Digite um valor válido.")
             elif num == len(livros):
+                contador =1
                 for livro in livros:
-                    if num == livro["titulo"]:
-                        print("LIVRO ENCONTRADO")
-                        print(f"{contador}. {livro['titulo']} | {livro["autor"]} | {livro["tema"]}")
-                        contador+=1
+                        if num == livro:
+                            print(f"{contador}. {livro['titulo']} | {livro["autor"]} | {livro["tema"]}")
+                            contador+=1
             else:
                 break
         except ValueError:
@@ -200,4 +199,4 @@ while True:
     else:
         ("DIGITE A OPÇÃO DESEJADA")
 
-input("TECLE ENTER PARA CONTINUAR: ")
+    input("TECLE ENTER PARA CONTINUAR: ")
